@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Recur</string>
+    <string name="renewal_period.daily">Every day</string>
+    <string name="renewal_period.weekly">Weekly</string>
+    <string name="renewal_period.monthly">Monthly</string>
+    <string name="renewal_period.yearly">Yearly</string>
+    <string name="renewal_period.onceoff">Once-off</string>
+    <string name="renewal_period.quarterly">Quarterly</string>
+    <string name="renewal_period.calendar_month">Calendar month</string>
 </resources>

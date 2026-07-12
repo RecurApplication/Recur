@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recur</string>
+    <string name="renewal_period.daily">Codziennie</string>
+    <string name="renewal_period.weekly">Co tydzień</string>
+    <string name="renewal_period.monthly">Co miesiąc</string>
+    <string name="renewal_period.yearly">Co rok</string>
+    <string name="renewal_period.onceoff">Nieodnawialny</string>
+    <string name="renewal_period.quarterly">Kwartalnie</string>
+    <string name="renewal_period.calendar_month">Miesiąc kalendarzowy</string>
+</resources>

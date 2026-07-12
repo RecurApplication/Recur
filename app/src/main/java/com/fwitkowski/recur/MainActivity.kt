@@ -14,6 +14,7 @@ import com.fwitkowski.recur.data.interfaces.Subscription
 import com.fwitkowski.recur.data.interfaces.SubscriptionPeriod
 import com.fwitkowski.recur.ui.components.SubscriptionTile
 import com.fwitkowski.recur.ui.theme.RecurTheme
+import java.time.LocalDate
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +28,8 @@ class MainActivity : ComponentActivity() {
                             company = "OpenAI",
                             subscriptionName = "ChatGPT Plus",
                             price = 99.99f,
-                            period = SubscriptionPeriod.CALENDAR_MONTH
+                            period = SubscriptionPeriod.CALENDAR_MONTH,
+                            renewalDate = LocalDate.now().plusMonths(1),
                         ),
                         modifier = Modifier.padding(innerPadding)
                     )
