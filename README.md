@@ -9,13 +9,15 @@ A mobile application for managing active subscriptions. Lets you add, edit, remo
 * Kotlin
 
 ## Features
+* Ordering subscriptions on users way
+* Sorting subscriptions based on categories
 * Support for daily, weekly, monthly, quarterly, and yearly billed subscriptions
-* Sorting subscriptions by category
+* Pause and resume your subscriptions
 * Notifications for upcoming subscription renewals
-* Subscription summary with cost calculations
 
 ## Planned features
 * Cross-device synchronization via Google account
+* Subscription summary with cost calculations
 
 ## Getting Started
 
@@ -43,3 +45,4 @@ To install the debug build on a connected device or emulator:
 ./gradlew test            # unit tests
 ./gradlew connectedCheck  # instrumented tests (requires a device/emulator)
 ```
+
