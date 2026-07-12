@@ -1,8 +1,9 @@
 package com.fwitkowski.recur.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.fwitkowski.recur.data.interfaces.Subscription
-import com.fwitkowski.recur.data.interfaces.SubscriptionPeriod
+import com.fwitkowski.recur.data.model.Subscription
+import com.fwitkowski.recur.data.model.SubscriptionCategory
+import com.fwitkowski.recur.data.model.SubscriptionPeriod
 import java.time.LocalDate
 
 class SubscriptionPreviewParameterProvider : PreviewParameterProvider<Subscription> {
@@ -13,6 +14,7 @@ class SubscriptionPreviewParameterProvider : PreviewParameterProvider<Subscripti
             price = 90f,
             period = SubscriptionPeriod.MONTH,
             renewalDate = LocalDate.now().plusMonths(1),
+            category = SubscriptionCategory.AI
         )
     )
 }

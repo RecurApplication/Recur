@@ -2,7 +2,7 @@ package com.fwitkowski.recur.ui.components
 
 import androidx.annotation.StringRes
 import com.fwitkowski.recur.R
-import com.fwitkowski.recur.data.interfaces.SubscriptionPeriod
+import com.fwitkowski.recur.data.model.SubscriptionPeriod
 
 val SubscriptionPeriod.labelRes: Int
     @StringRes get() = when (this) {

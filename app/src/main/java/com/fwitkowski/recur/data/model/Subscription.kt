@@ -1,4 +1,4 @@
-package com.fwitkowski.recur.data.interfaces
+package com.fwitkowski.recur.data.model
 
 import java.time.LocalDate
 
@@ -8,4 +8,5 @@ data class Subscription(
     val price: Float,
     val period: SubscriptionPeriod,
     val renewalDate: LocalDate,
+    val category: SubscriptionCategory
 )

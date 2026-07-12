@@ -1,4 +1,4 @@
-package com.fwitkowski.recur.data.interfaces
+package com.fwitkowski.recur.data.model
 
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit

@@ -10,8 +10,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.fwitkowski.recur.data.interfaces.Subscription
-import com.fwitkowski.recur.data.interfaces.SubscriptionPeriod
+import com.fwitkowski.recur.data.model.Subscription
+import com.fwitkowski.recur.data.model.SubscriptionCategory
+import com.fwitkowski.recur.data.model.SubscriptionPeriod
 import com.fwitkowski.recur.ui.components.SubscriptionTile
 import com.fwitkowski.recur.ui.theme.RecurTheme
 import java.time.LocalDate
@@ -29,7 +30,8 @@ class MainActivity : ComponentActivity() {
                             subscriptionName = "ChatGPT Plus",
                             price = 99.99f,
                             period = SubscriptionPeriod.CALENDAR_MONTH,
-                            renewalDate = LocalDate.now().plusDays(15)
+                            renewalDate = LocalDate.now().plusDays(15),
+                            category = SubscriptionCategory.AI
                         ),
                         modifier = Modifier.padding(innerPadding)
                     )

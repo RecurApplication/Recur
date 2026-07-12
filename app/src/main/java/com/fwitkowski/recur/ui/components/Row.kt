@@ -18,8 +18,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.fwitkowski.recur.data.interfaces.Subscription
-import com.fwitkowski.recur.data.interfaces.renewalProgressRemaining
+import com.fwitkowski.recur.data.model.Subscription
+import com.fwitkowski.recur.data.model.renewalProgressRemaining
 import com.fwitkowski.recur.preview.SubscriptionPreviewParameterProvider
 
 @Preview(showBackground = true)
