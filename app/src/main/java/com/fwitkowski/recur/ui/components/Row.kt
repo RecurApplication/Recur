@@ -14,10 +14,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.fwitkowski.recur.data.interfaces.Subscription
+import com.fwitkowski.recur.data.interfaces.renewalProgressRemaining
 import com.fwitkowski.recur.preview.SubscriptionPreviewParameterProvider
 
 @Preview(showBackground = true)
@@ -31,17 +33,23 @@ fun SubscriptionTile(@PreviewParameter (SubscriptionPreviewParameterProvider::cl
         Row(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Column {
+            RenewalGauge(progress = subscription.renewalProgressRemaining())
+
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = subscription.subscriptionName,
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                 )
                 Text(
                     text = subscription.company,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
 

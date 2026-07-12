@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                             subscriptionName = "ChatGPT Plus",
                             price = 99.99f,
                             period = SubscriptionPeriod.CALENDAR_MONTH,
-                            renewalDate = LocalDate.now().plusMonths(1),
+                            renewalDate = LocalDate.now().plusDays(15)
                         ),
                         modifier = Modifier.padding(innerPadding)
                     )
