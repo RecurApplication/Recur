@@ -7,10 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.fwitkowski.recur.data.interfaces.Subscription
+import com.fwitkowski.recur.data.interfaces.SubscriptionPeriod
+import com.fwitkowski.recur.ui.components.SubscriptionTile
 import com.fwitkowski.recur.ui.theme.RecurTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,8 +22,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             RecurTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Recur",
+                    SubscriptionTile(
+                        Subscription(
+                            company = "OpenAI",
+                            subscriptionName = "ChatGPT Plus",
+                            price = 99.99f,
+                            period = SubscriptionPeriod.CALENDAR_MONTH
+                        ),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -30,18 +37,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     RecurTheme {
-        Greeting("Android")
     }
 }
