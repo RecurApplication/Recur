@@ -16,15 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.fwitkowski.recur.data.model.Subscription
+import com.fwitkowski.recur.data.model.SubscriptionCategory
+import com.fwitkowski.recur.data.model.SubscriptionPeriod
 import com.fwitkowski.recur.data.model.renewalProgressRemaining
-import com.fwitkowski.recur.preview.SubscriptionPreviewParameterProvider
+import java.time.LocalDate
 
-@Preview(showBackground = true)
 @Composable
-fun SubscriptionTile(@PreviewParameter (SubscriptionPreviewParameterProvider::class)subscription: Subscription, modifier: Modifier = Modifier) {
+fun SubscriptionTile(subscription: Subscription, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier.fillMaxWidth().padding(16.dp),
         shape = RoundedCornerShape(16.dp),
@@ -65,5 +65,22 @@ fun SubscriptionTile(@PreviewParameter (SubscriptionPreviewParameterProvider::cl
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun SubscriptionTileExample() {
+    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        SubscriptionTile(
+            Subscription(
+                company = "Anthropic",
+                subscriptionName = "Claude Pro",
+                price = 99.99f,
+                period = SubscriptionPeriod.MONTH,
+                renewalDate = LocalDate.now().plusMonths(1),
+                category = SubscriptionCategory.AI
+            )
+        )
     }
 }
