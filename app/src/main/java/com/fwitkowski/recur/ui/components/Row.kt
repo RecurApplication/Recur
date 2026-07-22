@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,21 +22,35 @@ import com.fwitkowski.recur.data.model.Subscription
 import com.fwitkowski.recur.data.model.SubscriptionCategory
 import com.fwitkowski.recur.data.model.SubscriptionPeriod
 import com.fwitkowski.recur.data.model.renewalProgressRemaining
+import com.fwitkowski.recur.ui.theme.categoryColors
 import java.time.LocalDate
 
 @Composable
-fun SubscriptionTile(subscription: Subscription, modifier: Modifier = Modifier) {
+fun SubscriptionTile(
+    subscription: Subscription,
+    modifier: Modifier = Modifier,
+    backgroundColor: Color? = null,
+    gaugeColor: Color? = null,
+) {
+    val scheme = categoryColors(subscription.category)
+
     Card(
         modifier = modifier.fillMaxWidth().padding(16.dp),
         shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = backgroundColor ?: scheme.backgroundColor
+        )
     ) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            RenewalGauge(progress = subscription.renewalProgressRemaining())
+            RenewalGauge(
+                progress = subscription.renewalProgressRemaining(),
+                progressColor = gaugeColor ?: scheme.gaugeColor
+            )
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
@@ -71,7 +86,7 @@ fun SubscriptionTile(subscription: Subscription, modifier: Modifier = Modifier) 
 @Preview(showBackground = true)
 @Composable
 private fun SubscriptionTileExample() {
-    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         SubscriptionTile(
             Subscription(
                 company = "Anthropic",
@@ -82,5 +97,26 @@ private fun SubscriptionTileExample() {
                 category = SubscriptionCategory.AI
             )
         )
+        SubscriptionTile(
+            Subscription(
+                company = "Spotify",
+                subscriptionName = "Premium",
+                price = 29.99f,
+                period = SubscriptionPeriod.MONTH,
+                renewalDate = LocalDate.now().plusDays(10),
+                category = SubscriptionCategory.MUSIC
+            )
+        )
+        SubscriptionTile(
+            Subscription(
+                company = "Netflix",
+                subscriptionName = "Standard",
+                price = 55.0f,
+                period = SubscriptionPeriod.MONTH,
+                renewalDate = LocalDate.now().plusDays(3),
+                category = SubscriptionCategory.VIDEO
+            )
+        )
     }
 }
+
