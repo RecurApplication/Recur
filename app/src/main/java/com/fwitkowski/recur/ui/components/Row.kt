@@ -31,54 +31,75 @@ fun SubscriptionTile(
     modifier: Modifier = Modifier,
     backgroundColor: Color? = null,
     gaugeColor: Color? = null,
+    onClick: (() -> Unit)? = null,
 ) {
     val scheme = categoryColors(subscription.category)
+    val resolvedGaugeColor = gaugeColor ?: scheme.gaugeColor
+    val cardColors = CardDefaults.cardColors(containerColor = backgroundColor ?: scheme.backgroundColor)
+    val cardShape = RoundedCornerShape(16.dp)
+    val cardElevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    val cardModifier = modifier.fillMaxWidth().padding(16.dp)
 
-    Card(
-        modifier = modifier.fillMaxWidth().padding(16.dp),
-        shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = backgroundColor ?: scheme.backgroundColor
-        )
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+    if (onClick != null) {
+        Card(
+            onClick = onClick,
+            modifier = cardModifier,
+            shape = cardShape,
+            elevation = cardElevation,
+            colors = cardColors,
         ) {
-            RenewalGauge(
-                progress = subscription.renewalProgressRemaining(),
-                progressColor = gaugeColor ?: scheme.gaugeColor
+            SubscriptionTileContent(subscription, resolvedGaugeColor)
+        }
+    } else {
+        Card(
+            modifier = cardModifier,
+            shape = cardShape,
+            elevation = cardElevation,
+            colors = cardColors,
+        ) {
+            SubscriptionTileContent(subscription, resolvedGaugeColor)
+        }
+    }
+}
+
+@Composable
+private fun SubscriptionTileContent(subscription: Subscription, gaugeColor: Color) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        RenewalGauge(
+            progress = subscription.renewalProgressRemaining(),
+            progressColor = gaugeColor
+        )
+
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = subscription.subscriptionName,
+                style = MaterialTheme.typography.titleMedium,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
+            Text(
+                text = subscription.company,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
 
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = subscription.subscriptionName,
-                    style = MaterialTheme.typography.titleMedium,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-                Text(
-                    text = subscription.company,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
-
-            Column(horizontalAlignment = Alignment.End) {
-                Text(
-                    text = "${subscription.price} zł",
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                    text = stringResource(subscription.period.labelRes),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
+        Column(horizontalAlignment = Alignment.End) {
+            Text(
+                text = "${subscription.price} zł",
+                style = MaterialTheme.typography.titleMedium
+            )
+            Text(
+                text = stringResource(subscription.period.labelRes),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }

@@ -8,4 +8,7 @@
     <string name="renewal_period.onceoff">Nieodnawialny</string>
     <string name="renewal_period.quarterly">Kwartalnie</string>
     <string name="renewal_period.calendar_month">Miesiąc kalendarzowy</string>
+    <string name="subscription_summary.title">Szczegóły subskrypcji</string>
+    <string name="subscription_summary.next_renewal">Następne odnowienie</string>
+    <string name="subscription_summary.back">Wstecz</string>
 </resources>
